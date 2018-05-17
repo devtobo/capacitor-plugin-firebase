@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.homepage = 'none'
   s.author = 'Thomas Brian'
   s.source = { :git => '', :tag => s.version.to_s }
-  s.source_files = 'ios/Plugin/Plugin/**/*.{swift,m,c,cc,mm,cpp}'
+  s.source_files = 'ios/Plugin/Plugin/**/*.{swift,h,m,c,cc,mm,cpp}'
   s.public_header_files = 'ios/Plugin/Plugin/*.h'
 
   s.vendored_frameworks = 'ios/FirebaseSDK/Analytics/FirebaseCore.framework', 'ios/FirebaseSDK/Analytics/FirebaseAnalytics.framework', 'ios/FirebaseSDK/Analytics/FirebaseCoreDiagnostics.framework', 'ios/FirebaseSDK/Analytics/FirebaseInstanceID.framework', 'ios/FirebaseSDK/Analytics/FirebaseNanoPB.framework', 'ios/FirebaseSDK/Analytics/GoogleToolboxForMac.framework', 'ios/FirebaseSDK/Analytics/nanopb.framework', 
