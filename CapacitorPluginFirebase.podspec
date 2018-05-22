@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.source_files = 'ios/Plugin/Plugin/**/*.{swift,h,m,c,cc,mm,cpp}'
   s.public_header_files = 'ios/Plugin/Plugin/*.h'
 
-  s.vendored_frameworks = 'ios/FirebaseSDK/Analytics/FirebaseCore.framework', 'ios/FirebaseSDK/Analytics/FirebaseAnalytics.framework', 'ios/FirebaseSDK/Analytics/FirebaseCoreDiagnostics.framework', 'ios/FirebaseSDK/Analytics/FirebaseInstanceID.framework', 'ios/FirebaseSDK/Analytics/FirebaseNanoPB.framework', 'ios/FirebaseSDK/Analytics/GoogleToolboxForMac.framework', 'ios/FirebaseSDK/Analytics/nanopb.framework', 'ios/FirebaseSDK/Crashlytics/Crashlytics.framework', 'ios/FirebaseSDK/Crashlytics/Fabric.framework'
+  s.vendored_frameworks = 'ios/FirebaseSDK/Analytics/FirebaseCore.framework', 'ios/FirebaseSDK/Analytics/FirebaseAnalytics.framework', 'ios/FirebaseSDK/Analytics/FirebaseCoreDiagnostics.framework', 'ios/FirebaseSDK/Analytics/FirebaseInstanceID.framework', 'ios/FirebaseSDK/Analytics/FirebaseNanoPB.framework', 'ios/FirebaseSDK/Analytics/GoogleToolboxForMac.framework', 'ios/FirebaseSDK/Analytics/nanopb.framework', 'ios/FirebaseSDK/Crashlytics/Crashlytics.framework', 'ios/FirebaseSDK/Crashlytics/Fabric.framework', 'ios/FirebaseSDK/Messaging/FirebaseMessaging.framework', 'ios/FirebaseSDK/Messaging/Protobuf.framework'
 
   s.ios.deployment_target  = '10.0'
   s.dependency 'Capacitor'

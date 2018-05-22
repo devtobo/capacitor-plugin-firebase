@@ -7,4 +7,6 @@ CAP_PLUGIN(CAPFirebasePlugin, "Firebase",
            CAP_PLUGIN_METHOD(logEvent, CAPPluginReturnNone);
            
            CAP_PLUGIN_METHOD(sendJavascriptError, CAPPluginReturnNone);
+           
+           CAP_PLUGIN_METHOD(registerForRemoteNotifications, CAPPluginReturnNone);
 )
