@@ -39,4 +39,51 @@ TBD
 
 Exemple usage:
 
+### Analytics
+
 `Capacitor.Plugins.Firebase.logEvent({name: "my_event", parameters: { foo: "bar", one: 1 }})`
+
+
+### Messaging
+
+```
+Capacitor.Plugins.Firebase.registerForRemoteNotifications()
+    .then((result) => {
+        console.log("registerForRemoteNotifications result: ", result)
+    })
+    .catch((error) => {
+        console.error("registerForRemoteNotifications error: ", error)
+    })
+```
+
+### Crashlytics
+
+```
+var reportError = function (error) {
+    // fileName is supported on some platforms but not all
+    var fileName = error.fileName
+
+    try {
+        var stack = ErrorStackParser.parse(error)
+        var stackJsonObj = stack.map(function (frame) {
+            return {
+                functionName: frame.functionName,
+                fileName: frame.fileName,
+                lineNumber: frame.lineNumber,
+                columnNumber: frame.columnNumber,
+            };
+        })
+
+        Firebase.sendJavascriptError({ message: error.message, stackTrace: stackJsonObj })
+    } catch (error) {
+        console.error('Caught an error in reportError handler: ', error)
+    }
+}
+
+var errorHandler = function (errorEvent) {
+    var error = errorEvent.error;
+    reportError(error);
+}
+
+window.addEventListener('error', errorHandler);
+```
