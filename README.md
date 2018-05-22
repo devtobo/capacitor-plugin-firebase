@@ -16,6 +16,21 @@ script_phase :name => 'Firebase Crashlytics', :script => '"${PODS_ROOT}/../../..
 For Push notifications, add your Auth Key to Firebase.
 Open your project in Xcode and enable the "Push Notifications" Capability (select App in project navigator > TARGETS : App > Capabilities)
 
+In AppDelegate.swift, add these two methods:
+
+```
+  // Inside the method > func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
+  // Add this line:
+    CAPFirebasePlugin.instance()?.applicationDidFinishLaunchingWithOptions(launchOptions: launchOptions)
+    
+  // Add this method:
+  func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+    CAPFirebasePlugin.instance()?.applicationDidRegisterForRemoteNotificationsWithDeviceToken(deviceToken: deviceToken)
+  }
+```
+
+
+
 ## For Android
 
 TBD

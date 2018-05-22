@@ -13,15 +13,20 @@ typealias JSObject = [String:Any]
  * Please read the Capacitor iOS Plugin Development Guide
  * here: https://capacitor.ionicframework.com/docs/plugins/ios
  */
+
+var registerPushCall: CAPPluginCall? = nil
+var g_instance: CAPFirebasePlugin? = nil
+
 @objc(CAPFirebasePlugin)
 public class CAPFirebasePlugin: CAPPlugin, UNUserNotificationCenterDelegate, MessagingDelegate {
     
-    public override func load() {
-        FirebaseApp.configure()
-
-        // For iOS 10 display notification (sent via APNS)
-        UNUserNotificationCenter.current().delegate = self
-        Messaging.messaging().delegate = self
+    override public init!(bridge: CAPBridge!, pluginId: String!, pluginName: String!) {
+        super.init(bridge: bridge, pluginId: pluginId, pluginName: pluginName)
+        g_instance = self
+    }
+    
+    public static func instance() -> CAPFirebasePlugin? {
+        return g_instance
     }
     
     @objc func logEvent(_ call: CAPPluginCall) {
@@ -58,6 +63,8 @@ public class CAPFirebasePlugin: CAPPlugin, UNUserNotificationCenterDelegate, Mes
     
     @objc func registerForRemoteNotifications(_ call: CAPPluginCall) {
         
+        registerPushCall = call
+        
         DispatchQueue.main.async {
             
             let application = UIApplication.shared
@@ -76,10 +83,28 @@ public class CAPFirebasePlugin: CAPPlugin, UNUserNotificationCenterDelegate, Mes
     }
     
     public func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
-        NSLog("Received registration token: ", fcmToken)
+        print("[firebase] Received registration token: %@", fcmToken)
     }
     public func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
-        NSLog("Received remote message: ", remoteMessage)
+        print("[firebase] Received remote message: %@", remoteMessage)
     }
     
+    
+    // App Delegates
+    
+    public func applicationDidFinishLaunchingWithOptions(launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
+        FirebaseApp.configure()
+        
+        // For iOS 10 display notification (sent via APNS)
+        
+        UNUserNotificationCenter.current().delegate = self
+        Messaging.messaging().delegate = self
+    }
+    
+    public func applicationDidRegisterForRemoteNotificationsWithDeviceToken(deviceToken: Data) {
+        let hexString = deviceToken.map { String(format: "%02hhx", $0) }.joined()
+        registerPushCall?.success(["deviceToken": hexString])
+    }
 }
+
+
