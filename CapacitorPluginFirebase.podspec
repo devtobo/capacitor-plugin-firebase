@@ -9,13 +9,14 @@ Pod::Spec.new do |s|
   s.source_files = 'ios/Plugin/Plugin/**/*.{swift,h,m,c,cc,mm,cpp}'
   s.public_header_files = 'ios/Plugin/Plugin/*.h'
 
-  s.vendored_frameworks = 'ios/FirebaseSDK/Analytics/FirebaseCore.framework', 'ios/FirebaseSDK/Analytics/FirebaseAnalytics.framework', 'ios/FirebaseSDK/Analytics/FirebaseCoreDiagnostics.framework', 'ios/FirebaseSDK/Analytics/FirebaseInstanceID.framework', 'ios/FirebaseSDK/Analytics/FirebaseNanoPB.framework', 'ios/FirebaseSDK/Analytics/GoogleToolboxForMac.framework', 'ios/FirebaseSDK/Analytics/nanopb.framework', 
+  s.vendored_frameworks = 'ios/FirebaseSDK/Analytics/FirebaseCore.framework', 'ios/FirebaseSDK/Analytics/FirebaseAnalytics.framework', 'ios/FirebaseSDK/Analytics/FirebaseCoreDiagnostics.framework', 'ios/FirebaseSDK/Analytics/FirebaseInstanceID.framework', 'ios/FirebaseSDK/Analytics/FirebaseNanoPB.framework', 'ios/FirebaseSDK/Analytics/GoogleToolboxForMac.framework', 'ios/FirebaseSDK/Analytics/nanopb.framework', 'ios/FirebaseSDK/Crashlytics/Crashlytics.framework', 'ios/FirebaseSDK/Crashlytics/Fabric.framework'
+
   s.ios.deployment_target  = '10.0'
   s.dependency 'Capacitor'
 
   s.pod_target_xcconfig = {
-    'FRAMEWORK_SEARCH_PATHS' => "${PODS_TARGET_SRCROOT}/ios/FirebaseSDK/Analytics",
-    'OTHER_LDFLAGS' => '-ObjC'
+    'FRAMEWORK_SEARCH_PATHS' => "${PODS_TARGET_SRCROOT}/ios/FirebaseSDK/Analytics ${PODS_TARGET_SRCROOT}/ios/FirebaseSDK/Crashlytics", 
+    'OTHER_LDFLAGS' => '-ObjC -lc++'
   }
 
 end
