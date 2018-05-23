@@ -1,3 +1,4 @@
 .gradle
 node_modules
 Pods
+android/capacitor-plugin-firebase/build

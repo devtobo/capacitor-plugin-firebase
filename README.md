@@ -33,7 +33,7 @@ In AppDelegate.swift, add these two methods:
 
 ## For Android
 
-TBD
+Register the plugin in your MainActivity.java : `add(Firebase.class);`
 
 # API
 
